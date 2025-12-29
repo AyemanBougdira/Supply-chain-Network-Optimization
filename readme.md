@@ -4,7 +4,7 @@ Fait par:
 - Ayeman BOUGDIRA
 - Ranya KSSIM
 - Mohammed OUTAABOUT
-- Aya El kouach
+- Aya El Kouach
 
 ## 📦 Description du Projet
 
