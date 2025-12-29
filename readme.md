@@ -4,6 +4,7 @@ Fait par:
 - Ayeman BOUGDIRA
 - Ranya KSSIM
 - Mohammed OUTAABOUT
+- Aya El kouach
 
 ## 📦 Description du Projet
 
@@ -79,6 +80,7 @@ tout en satisfaisant la demande et en respectant les contraintes de capacité et
 │
 ├── model/
 │   ├── model.py
+|   |── solve_model.py
 │
 ├── results/
 │   ├── solution_summary.txt
