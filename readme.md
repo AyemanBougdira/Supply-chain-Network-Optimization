@@ -43,7 +43,7 @@ conda install -c conda-forge glpk
 
 # Lancer l'application
 streamlit run app.py
-
+```
 ## 📦 Description du Projet
 
 Ce projet porte sur la **conception et l’optimisation d’un réseau logistique multi-échelons** à l’aide d’un **modèle de Programmation Linéaire en Nombres Entiers Mixtes (MILP)**.
