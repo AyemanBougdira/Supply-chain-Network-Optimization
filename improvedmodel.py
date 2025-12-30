@@ -620,7 +620,7 @@ def main():
 
     # Chargement des données
     print("📁 Étape 1/5: Chargement des données...")
-    data = load_and_validate_data(path="")
+    data = load_and_validate_data(path="Data/")
 
     # Construction du modèle
     print("\n🔧 Étape 2/5: Construction du modèle...")
