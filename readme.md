@@ -6,6 +6,24 @@ Fait par:
 - Mohammed OUTAABOUT
 - Aya El Kouach
 
+## 🧑‍💻Utiliser l'application
+Exécuter les commandes suivantes au terminal
+
+"""
+git clone https://github.com/AyemanBougdira/Supply-chain-Network-Optimization.git
+cd Supply-chain-Network-Optimization
+pip install -r requirements.txt
+conda install -c conda-forge glpk  
+"""
+
+Lancer l'application et modifier les données:
+
+"""
+streamlit run app.py
+"""
+
+Déclancher l'optimisation en cliquant sur "LANCER L'OPTMISATION"
+
 ## 📦 Description du Projet
 
 Ce projet porte sur la **conception et l’optimisation d’un réseau logistique multi-échelons** à l’aide d’un **modèle de Programmation Linéaire en Nombres Entiers Mixtes (MILP)**.

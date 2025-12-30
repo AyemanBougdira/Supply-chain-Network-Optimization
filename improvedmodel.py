@@ -1206,45 +1206,102 @@ def plot_capacity_utilization(analysis):
     # plt.show()
 
 
+# def plot_stock_evolution(m, depots_ouverts, entrepots_ouverts_sample):
+#     """Évolution des stocks au cours du temps"""
+
+#     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 10))
+
+#     # Stocks dépôts
+#     for d in depots_ouverts[:3]:  # Top 3 dépôts
+#         for p in list(m.P)[:2]:  # 2 premiers produits
+#             mois = sorted(m.T)
+#             stocks = [value(m.ID[p, d, t]) for t in mois]
+#             ax1.plot(mois, stocks, marker='o',
+#                      label=f'Dépôt {d} - Produit {p}', linewidth=2)
+
+#     ax1.set_xlabel('Mois', fontsize=11, weight='bold')
+#     ax1.set_ylabel('Stock (unités)', fontsize=11, weight='bold')
+#     ax1.set_title('Évolution des Stocks dans les Dépôts',
+#                   fontsize=13, weight='bold')
+#     ax1.legend(fontsize=9, loc='best')
+#     ax1.grid(True, alpha=0.3)
+
+#     # Stocks entrepôts
+#     for w in entrepots_ouverts_sample[:3]:  # Top 3 entrepôts
+#         for p in list(m.P)[:2]:
+#             mois = sorted(m.T)
+#             stocks = [value(m.IW[p, w, t]) for t in mois]
+#             ax2.plot(mois, stocks, marker='s',
+#                      label=f'Entrepôt {w} - Produit {p}', linewidth=2)
+
+#     ax2.set_xlabel('Mois', fontsize=11, weight='bold')
+#     ax2.set_ylabel('Stock (unités)', fontsize=11, weight='bold')
+#     ax2.set_title('Évolution des Stocks dans les Entrepôts',
+#                   fontsize=13, weight='bold')
+#     ax2.legend(fontsize=9, loc='best')
+#     ax2.grid(True, alpha=0.3)
+
+#     plt.tight_layout()
+#     plt.savefig('results/stock_evolution.png', dpi=300, bbox_inches='tight')
+#     print("✓ Graphique sauvegardé: stock_evolution.png")
+#     # plt.show()
+
+
 def plot_stock_evolution(m, depots_ouverts, entrepots_ouverts_sample):
-    """Évolution des stocks au cours du temps"""
 
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 10))
 
-    # Stocks dépôts
-    for d in depots_ouverts[:3]:  # Top 3 dépôts
-        for p in list(m.P)[:2]:  # 2 premiers produits
-            mois = sorted(m.T)
-            stocks = [value(m.ID[p, d, t]) for t in mois]
-            ax1.plot(mois, stocks, marker='o',
-                     label=f'Dépôt {d} - Produit {p}', linewidth=2)
+    # ---- DEPOTS ----
+    if depots_ouverts:
+        for d in depots_ouverts[:3]:
+            for p in list(m.P)[:2]:
+                mois = sorted(m.T, key=lambda x: int(x))
+                stocks = [value(m.ID[p, d, t]) for t in mois]
 
-    ax1.set_xlabel('Mois', fontsize=11, weight='bold')
-    ax1.set_ylabel('Stock (unités)', fontsize=11, weight='bold')
-    ax1.set_title('Évolution des Stocks dans les Dépôts',
-                  fontsize=13, weight='bold')
-    ax1.legend(fontsize=9, loc='best')
+                ax1.plot(
+                    mois, stocks, marker='o',
+                    label=f'Dépôt {d} - Produit {p}', linewidth=2
+                )
+
+                # Safety stock
+                ax1.axhline(
+                    y=value(m.ssD[p]), linestyle='--', alpha=0.3
+                )
+    else:
+        ax1.text(0.5, 0.5, "Aucun dépôt ouvert", ha='center')
+
+    ax1.set_title("Évolution des Stocks dans les Dépôts")
+    ax1.set_xlabel("Mois")
+    ax1.set_ylabel("Stock")
+    ax1.legend()
     ax1.grid(True, alpha=0.3)
 
-    # Stocks entrepôts
-    for w in entrepots_ouverts_sample[:3]:  # Top 3 entrepôts
-        for p in list(m.P)[:2]:
-            mois = sorted(m.T)
-            stocks = [value(m.IW[p, w, t]) for t in mois]
-            ax2.plot(mois, stocks, marker='s',
-                     label=f'Entrepôt {w} - Produit {p}', linewidth=2)
+    # ---- WAREHOUSES ----
+    if entrepots_ouverts_sample:
+        for w in entrepots_ouverts_sample[:3]:
+            for p in list(m.P)[:2]:
+                mois = sorted(m.T, key=lambda x: int(x))
+                stocks = [value(m.IW[p, w, t]) for t in mois]
 
-    ax2.set_xlabel('Mois', fontsize=11, weight='bold')
-    ax2.set_ylabel('Stock (unités)', fontsize=11, weight='bold')
-    ax2.set_title('Évolution des Stocks dans les Entrepôts',
-                  fontsize=13, weight='bold')
-    ax2.legend(fontsize=9, loc='best')
+                ax2.plot(
+                    mois, stocks, marker='s',
+                    label=f'Entrepôt {w} - Produit {p}', linewidth=2
+                )
+
+                ax2.axhline(
+                    y=value(m.ssW[p]), linestyle='--', alpha=0.3
+                )
+    else:
+        ax2.text(0.5, 0.5, "Aucun entrepôt ouvert", ha='center')
+
+    ax2.set_title("Évolution des Stocks dans les Entrepôts")
+    ax2.set_xlabel("Mois")
+    ax2.set_ylabel("Stock")
+    ax2.legend()
     ax2.grid(True, alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig('results/stock_evolution.png', dpi=300, bbox_inches='tight')
-    print("✓ Graphique sauvegardé: stock_evolution.png")
-    # plt.show()
+    plt.savefig("results/stock_evolution.png", dpi=300)
 
 
 def generate_all_visualizations(m, analysis):
@@ -1272,49 +1329,49 @@ def generate_all_visualizations(m, analysis):
 # =====================================================
 
 
-def main():
-    """Fonction principale avec visualisations intégrées"""
+# def main():
+#     """Fonction principale avec visualisations intégrées"""
 
-    print("="*70)
-    print("    OPTIMISATION DU RÉSEAU LOGISTIQUE - SUPPLY CHAIN NETWORK")
-    print("="*70)
-    print(f"Démarrage: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+#     print("="*70)
+#     print("    OPTIMISATION DU RÉSEAU LOGISTIQUE - SUPPLY CHAIN NETWORK")
+#     print("="*70)
+#     print(f"Démarrage: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
 
-    # Chargement des données
-    print("📁 Étape 1/5: Chargement des données...")
-    data = load_and_validate_data(path="Data/")
+#     # Chargement des données
+#     print("📁 Étape 1/5: Chargement des données...")
+#     data = load_and_validate_data(path="Data/")
 
-    # Construction du modèle
-    print("\n🔧 Étape 2/5: Construction du modèle...")
-    m = build_model(data)
+#     # Construction du modèle
+#     print("\n🔧 Étape 2/5: Construction du modèle...")
+#     m = build_model(data)
 
-    # Résolution
-    print("\n⚡ Étape 3/5: Résolution du problème MILP...")
-    print("   (Ceci peut prendre plusieurs minutes...)\n")
+#     # Résolution
+#     print("\n⚡ Étape 3/5: Résolution du problème MILP...")
+#     print("   (Ceci peut prendre plusieurs minutes...)\n")
 
-    # solver = SolverFactory("glpk")
-    solver = SolverFactory("glpk")
-    results = solver.solve(m, tee=True)
+#     # solver = SolverFactory("glpk")
+#     solver = SolverFactory("glpk")
+#     results = solver.solve(m, tee=True)
 
-    # Analyse des résultats
-    print("\n📊 Étape 4/5: Analyse des résultats...")
-    analysis = analyze_results(m, results)
+#     # Analyse des résultats
+#     print("\n📊 Étape 4/5: Analyse des résultats...")
+#     analysis = analyze_results(m, results)
 
-    # NOUVEAU: Génération des visualisations
-    print("\n📈 Étape 5/5: Génération des visualisations...")
-    try:
-        generate_all_visualizations(m, analysis)
-    except Exception as e:
-        print(f"⚠️ Erreur lors de la génération des graphiques: {e}")
-        print("   Les résultats numériques restent disponibles.")
+#     # NOUVEAU: Génération des visualisations
+#     print("\n📈 Étape 5/5: Génération des visualisations...")
+#     try:
+#         generate_all_visualizations(m, analysis)
+#     except Exception as e:
+#         print(f"⚠️ Erreur lors de la génération des graphiques: {e}")
+#         print("   Les résultats numériques restent disponibles.")
 
-    # Export (optionnel)
-    # export_results(m, output_path="results/")
+#     # Export (optionnel)
+#     # export_results(m, output_path="results/")
 
-    print(
-        f"\n✅ Optimisation terminée: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+#     print(
+#         f"\n✅ Optimisation terminée: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
-    return m, results, analysis
+#     return m, results, analysis
 
 # =====================================================
 # Exécution
