@@ -44,7 +44,7 @@ conda install -c conda-forge glpk
 # Lancer l'application
 streamlit run app.py
 ```
-## 📦 Description du Projet
+## 📦 Paramétre du Projet
 
 Ce projet porte sur la **conception et l’optimisation d’un réseau logistique multi-échelons** à l’aide d’un **modèle de Programmation Linéaire en Nombres Entiers Mixtes (MILP)**.
 
@@ -69,6 +69,45 @@ tout en satisfaisant la demande et en respectant les contraintes de capacité et
 
 ---
 
+## Présentation de l'interface
+
+## 🖥️ Interface de Gestion (Streamlit)
+L'interface permet une gestion agile des paramètres logistiques avant le lancement du solveur.
+
+### Visualisation et Édition
+* **Modification en direct** : L'onglet "Données d'Entrée" permet de modifier les volumes de demande (ex: `demand_pct.csv`) directement dans l'application.
+* **Sauvegarde** : Un bouton permet d'enregistrer les modifications pour mettre à jour les paramètres du modèle.
+
+![Interface Streamlit](interface.png)
+
+---
+
+## 📈 Analyse des Résultats
+
+### 1. Structure des Coûts
+Le modèle cherche à minimiser la somme des coûts de transport, de stockage et des frais fixes.
+
+![Répartition des Coûts](results/cost_breakdown.png)
+* **Transport (58.9%)** : Le poste de dépense majeur, influencé par les flux entre usines, dépôts et clients.
+* **Coûts Fixes (20.9%)** : Liés à l'activation binaire (`yD`, `yW`) des sites logistiques.
+* **Stockage (20.1%)** : Coût de maintien de l'inventaire au fil des périodes.
+
+### 2. Évolution des Flux et Capacités
+Le réseau doit absorber une demande fluctuante tout en respectant les limites physiques des infrastructures.
+
+![Évolution des Flux](results/flux_evolution.png)
+* **Flux Mensuels** : On observe une moyenne de 10 073 unités avec une tendance légèrement haussière.
+
+![Utilisation des Capacités](results/capacity_utilization.png)
+* **Saturation** : Plusieurs entrepôts atteignent **100% d'utilisation**, signalant des goulots d'étranglement critiques pour la croissance future.
+
+### 3. Gestion des Stocks (Stratégie Juste-à-Temps)
+Les graphiques de stock présentent des lignes horizontales constantes.
+
+![Évolution des Stocks](results/stock_evolution.png)
+
+* **Interprétation** : Le solveur minimise les coûts de possession en ne stockant que le **Stock de Sécurité** (`ssD`, `ssW`) requis. 
+* **Logique** : Toute unité supplémentaire stockée augmenterait le coût total sans bénéfice, car le transport est capable de répondre à la demande en flux tendu chaque mois.
 
 ---
 
