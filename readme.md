@@ -5,24 +5,44 @@ Fait par:
 - Ranya KSSIM
 - Mohammed OUTAABOUT
 - Aya El Kouach
+# 📦 Supply Chain Network Optimization
 
-## 🧑‍💻Utiliser l'application
-Exécuter les commandes suivantes au terminal
+Ce projet propose une solution d'optimisation pour un réseau logistique multi-échelons (Usines → Dépôts → Entrepôts → Clients) utilisant **Pyomo** et le solveur **GLPK**. L'application permet de minimiser les coûts totaux tout en respectant les contraintes de capacité et de demande.
 
-"""
-git clone https://github.com/AyemanBougdira/Supply-chain-Network-Optimization.git
+## 🚀 Fonctionnalités
+* **Modélisation MILP** : Optimisation des flux et de l'ouverture des sites (Binary variables).
+* **Gestion Multi-période** : Planification sur 12 mois avec gestion des stocks initiaux et de sécurité.
+* **Visualisation Interactive** : Interface Streamlit pour modifier les paramètres et visualiser les résultats en temps réel.
+
+## 🛠️ Logique du Modèle
+Le script calcule le coût minimal en équilibrant :
+1.  **Coûts de Transport** : Entre chaque échelon du réseau.
+2.  **Coûts Fixes** : Liés à l'ouverture des dépôts et des entrepôts.
+3.  **Coûts de Stockage** : Basés sur les niveaux d'inventaire mensuels.
+
+
+---
+
+## 🧑‍💻 Utilisation de l'application
+
+### 1. Installation
+Exécutez les commandes suivantes dans votre terminal :
+
+```bash
+# Cloner le dépôt
+git clone [https://github.com/AyemanBougdira/Supply-chain-Network-Optimization.git](https://github.com/AyemanBougdira/Supply-chain-Network-Optimization.git)
+
+# Accéder au dossier
 cd Supply-chain-Network-Optimization
+
+# Installer les dépendances Python
 pip install -r requirements.txt
-conda install -c conda-forge glpk  
-"""
 
-Lancer l'application et modifier les données:
+# Installer le solveur GLPK (via Conda)
+conda install -c conda-forge glpk
 
-"""
+# Lancer l'application
 streamlit run app.py
-"""
-
-Déclancher l'optimisation en cliquant sur "LANCER L'OPTMISATION"
 
 ## 📦 Description du Projet
 
@@ -49,39 +69,15 @@ tout en satisfaisant la demande et en respectant les contraintes de capacité et
 
 ---
 
-## 🎯 Objectifs
-
-- Concevoir un modèle MILP réaliste pour un réseau logistique
-- Implémenter le modèle avec **Pyomo**
-- Résoudre un problème de grande dimension avec un solveur open-source (**GLPK**)
-- Analyser en détail le processus de résolution (Simplexe, Branch-and-Bound)
-- Valider la solution optimale et évaluer les performances computationnelles
 
 ---
 
-## 🧮 Modèle Mathématique
-
-**Type de modèle** : MILP  
-**Horizon de planification** : 12 mois  
-**Dimensions principales** :
-- 2 usines
-- 3 dépôts
-- 20 entrepôts
-- 209 clients
-- 3 produits
-
-**Décisions clés** :
-- Ouverture/fermeture des dépôts et entrepôts
-- Flux de produits entre chaque niveau
-- Niveaux de stock par période
-
----
 
 ## 🗂️ Structure du Répertoire
 
 ```text
 .
-├── data/
+├── Data/
 │   ├── demand_pct.csv
 │   ├── capacity_depots.csv
 │   ├── capacity_warehouses.csv
@@ -96,13 +92,18 @@ tout en satisfaisant la demande et en respectant les contraintes de capacité et
 │   ├── initial_stock_depots.csv
 │   └── initial_stock_warehouses.csv
 │
-├── model/
-│   ├── model.py
-|   |── solve_model.py
-│
+├
+│── ├── model.py
+│   ├── app.py
+│ 
+│ 
 ├── results/
-│   ├── solution_summary.txt
-│   
+│   ├── capacity_utilization.png
+│   ├── cost_breakdown.png
+│   ├── flux_evolution.png
+│   ├── stock_evolution.png
 │
+│
+│── packages.txt
 ├── README.md
 └── requirements.txt

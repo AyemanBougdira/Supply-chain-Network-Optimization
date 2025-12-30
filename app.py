@@ -36,20 +36,23 @@ def load_and_validate_data(path="Data/"):
 
 
 
-
 # def analyze_results_dict(m, results):
 #     total_cost = value(m.OBJ)
 #     depots_ouverts = [d for d in m.D if value(m.yD[d]) > 0.5]
 #     entrepots_ouverts = [w for w in m.W if value(m.yW[w]) > 0.5]
 #     return {'total_cost': total_cost, 'depots_ouverts': depots_ouverts, 'entrepots_ouverts': entrepots_ouverts}
-
 # =====================================================
 # 2. INTERFACE STREAMLIT
 # =====================================================
+st.set_page_config(
+    page_title="Supply chain",
+    page_icon="🚚",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 
-st.set_page_config(page_title="Supply Chain Optimizer", layout="wide")
-st.title("🚚 Optimisation Supply Chain")
+st.title("📦⛓️🚚 Supply Chain Network Optimization")
 
 files_config = {
     "Demande": "Data/demand_pct.csv", "Capacité Dépôts": "Data/capacity_depots.csv",
