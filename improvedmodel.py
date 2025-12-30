@@ -11,7 +11,7 @@ from datetime import datetime
 # =====================================================
 
 
-def load_and_validate_data(path=""):
+def load_and_validate_data(path="Data/"):
     """Charge et valide toutes les données avec gestion d'erreurs"""
     try:
         data = {
@@ -453,7 +453,7 @@ def plot_cost_breakdown(analysis):
               bbox_to_anchor=(1, 1), fontsize=10)
 
     plt.tight_layout()
-    plt.savefig('cost_breakdown.png', dpi=300, bbox_inches='tight')
+    plt.savefig('results/cost_breakdown.png', dpi=300, bbox_inches='tight')
     print("✓ Graphique sauvegardé: cost_breakdown.png")
     # plt.show()
 
@@ -489,7 +489,7 @@ def plot_flux_evolution(analysis):
     ax.grid(True, alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig('flux_evolution.png', dpi=300, bbox_inches='tight')
+    plt.savefig('results/flux_evolution.png', dpi=300, bbox_inches='tight')
     print("✓ Graphique sauvegardé: flux_evolution.png")
     # plt.show()
 
@@ -539,7 +539,7 @@ def plot_capacity_utilization(analysis):
         ax2.grid(axis='x', alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig('capacity_utilization.png', dpi=300, bbox_inches='tight')
+    plt.savefig('results/capacity_utilization.png',dpi=300, bbox_inches='tight')
     print("✓ Graphique sauvegardé: capacity_utilization.png")
     # plt.show()
 
@@ -580,7 +580,7 @@ def plot_stock_evolution(m, depots_ouverts, entrepots_ouverts_sample):
     ax2.grid(True, alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig('stock_evolution.png', dpi=300, bbox_inches='tight')
+    plt.savefig('results/stock_evolution.png', dpi=300, bbox_inches='tight')
     print("✓ Graphique sauvegardé: stock_evolution.png")
     # plt.show()
 
