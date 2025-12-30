@@ -30,7 +30,7 @@ Exécutez les commandes suivantes dans votre terminal :
 
 ```bash
 # Cloner le dépôt
-git clone [https://github.com/AyemanBougdira/Supply-chain-Network-Optimization.git](https://github.com/AyemanBougdira/Supply-chain-Network-Optimization.git)
+git clone https://github.com/AyemanBougdira/Supply-chain-Network-Optimization.git
 
 # Accéder au dossier
 cd Supply-chain-Network-Optimization
