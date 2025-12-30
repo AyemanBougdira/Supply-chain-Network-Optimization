@@ -630,7 +630,8 @@ def main():
     print("\n⚡ Étape 3/5: Résolution du problème MILP...")
     print("   (Ceci peut prendre plusieurs minutes...)\n")
 
-    solver = SolverFactory("glpk")
+    # solver = SolverFactory("glpk")
+    solver = SolverFactory("cbc")
     results = solver.solve(m, tee=True)
 
     # Analyse des résultats
