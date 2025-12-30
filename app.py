@@ -84,7 +84,7 @@ with tab2:
                 data = load_and_validate_data()
                 model = build_model(data)
                 # solver = SolverFactory("glpk")
-                solver = SolverFactory("cbc")
+                solver = SolverFactory("glpk")
                 results = solver.solve(model)
 
                 analysis = analyze_results(model, results)

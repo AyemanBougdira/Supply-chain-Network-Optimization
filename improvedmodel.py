@@ -631,7 +631,7 @@ def main():
     print("   (Ceci peut prendre plusieurs minutes...)\n")
 
     # solver = SolverFactory("glpk")
-    solver = SolverFactory("cbc")
+    solver = SolverFactory("glpk")
     results = solver.solve(m, tee=True)
 
     # Analyse des résultats
