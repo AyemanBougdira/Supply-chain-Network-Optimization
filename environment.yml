@@ -1,0 +1,12 @@
+name: supply_chain_app
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - glpk         # installs the GLPK executable
+  - pip
+  - pip:
+      - pyomo
+      - pandas
+      - openpyxl
+      - streamlit
