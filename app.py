@@ -101,11 +101,11 @@ with tab2:
                 
                 d1, d2 = st.columns(2)
                 with d1:
-                    st.image("cost_breakdown.png")
-                    st.image("flux_evolution.png")
+                    st.image("results/cost_breakdown.png")
+                    st.image("results/flux_evolution.png")
                 with d2:
-                    st.image("stock_evolution.png")
-                    st.image("capacity_utilization.png")
+                    st.image("results/stock_evolution.png")
+                    st.image("results/capacity_utilization.png")
 
             except Exception as e:
                 st.error(f"Erreur : {e}")
