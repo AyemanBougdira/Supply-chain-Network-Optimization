@@ -52,12 +52,12 @@ st.set_page_config(page_title="Supply Chain Optimizer", layout="wide")
 st.title("🚚 Optimisation Supply Chain")
 
 files_config = {
-    "Demande": "Data/demand_pct.csv", "Capacité Dépôts": "capacity_depots.csv",
-    "Capacité Entrepôts": "Data/capacity_warehouses.csv", "Coûts Fixes Dépôts": "fixed_cost_depots.csv",
-    "Coûts Fixes Entrepôts": "Data/fixed_cost_warehouses.csv", "Coûts Stockage": "holding_costs.csv",
-    "Transport Usine-Dépôt": "Data/transport_factory_depot.csv", "Transport Dépôt-Entrepôt": "transport_depot_warehouse.csv",
-    "Transport Entrepôt-Client": "Data/transport_warehouse_client.csv", "Stock Sécurité Dépôts": "safety_stock_depots.csv",
-    "Stock Sécurité Entrepôts": "Data/safety_stock_warehouses.csv", "Stock Initial Dépôts": "initial_stock_depots.csv",
+    "Demande": "Data/demand_pct.csv", "Capacité Dépôts": "Data/capacity_depots.csv",
+    "Capacité Entrepôts": "Data/capacity_warehouses.csv", "Coûts Fixes Dépôts": "Data/fixed_cost_depots.csv",
+    "Coûts Fixes Entrepôts": "Data/fixed_cost_warehouses.csv", "Coûts Stockage": "Data/holding_costs.csv",
+    "Transport Usine-Dépôt": "Data/transport_factory_depot.csv", "Transport Dépôt-Entrepôt": "Data/transport_depot_warehouse.csv",
+    "Transport Entrepôt-Client": "Data/transport_warehouse_client.csv", "Stock Sécurité Dépôts": "Data/safety_stock_depots.csv",
+    "Stock Sécurité Entrepôts": "Data/safety_stock_warehouses.csv", "Stock Initial Dépôts": "Data/initial_stock_depots.csv",
     "Stock Initial Entrepôts": "Data/initial_stock_warehouses.csv"
 }
 
